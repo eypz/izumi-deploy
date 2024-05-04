@@ -1,0 +1,68 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" sizes="32x32" href="/suhail.png">
+    <link rel="stylesheet" type="text/css" href="/style2.css" />
+</head>
+<body>
+    <div class="login-box">
+        <h2>Please Enter Github Username</h2>
+        <form id="username" method="get" action="/deploy">
+            <div class="user-box">
+                <input type="text" id="name" name="username" required />
+                <label>github username</label>
+            </div>
+            <a onclick="verify();" data-platform="https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2Fbizode14%2FBIZODE&amp;button-url=https://github.com/SuhailTechInfo&amp;version=1.3.1&amp;auther=SuhailTechInfo">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                DEPLOY
+            </a>
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+    <script type="text/javascript">
+
+
+
+        const urls = 'https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2Fbizode14%2FBIZODE&amp;button-url=https://github.com/SuhailTechInfo&amp;version=1.3.1&amp;auther=SuhailTechInfo';  // This will be replaced with the actual platform value on the server
+        //if(!urls) alert(`Invalid Platform!\n\n Follow : deploy?platform=heroku\nAvailable Platforms: ${(Object.keys(URLS)).join(", ")}`)
+
+
+
+       
+
+        async function verify() {
+        let gitApi = `https://api.github.com`
+        let owner = 'SuhailTechInfo'
+        let text = document.getElementById('name').value;
+
+            console.log("Text: ", text);
+            if ( text.length > 0 && text !== owner) {
+                text = text.split("|")[0].trim()
+                console.log("Text : " , text)
+                try {
+                    const { data } = await axios(`${gitApi}/users/${text}`)
+                    try {
+                        const repo = await axios(`${gitApi}/repos/${text}/Suhail-Md`);
+                    } catch (e) {
+                        try {
+                            const repo = await axios(`${gitApi}/repos/${text}/Secktor-bot`);
+                        } catch (e) {
+                            alert("Fork The Repository First.\nClick The 'OK' Button To Fork")
+                            return location.replace(`https://github.com/${owner}/Suhail-Md/fork`)
+                        }
+                    }      
+                    if(urls && ( urls.startsWith("https") || urls.startsWith("Http") ) ) window.location.replace(`${urls}`)       
+                    else alert("Invalid Platform url!\n\n Follow : deploy?platform=heroku\n Available Platforms: ")
+
+                 } catch (error) { alert('Invalid Username') }
+            } else if (text === owner) { alert('Please Put Your User Name') }
+        }
+    </script>    
+</body>
+</html>
