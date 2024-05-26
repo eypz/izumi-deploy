@@ -10,7 +10,7 @@
                 <input type="text" id="name" name="username" required="">
                 <label>github username</label>
             </div>
-            <a onclick="verify();" data-platform="https://www.heroku.com/deploy?template=https://github.com/sataniceypz/Izumi-v2">
+            <a onclick="verify();" data-platform="https://heroku.com/deploy?template=https://github.com/sataniceypz/Izumi-v2">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -24,7 +24,7 @@
 
 
 
-        const urls = 'https://www.heroku.com/deploy?template=https://github.com/sataniceypz/Izumi-v2';  
+        const urls = 'https://heroku.com/deploy?template=https://github.com/sataniceypz/Izumi-v2';  
 
 
 
@@ -42,10 +42,10 @@
                 try {
                     const { data } = await axios(`${gitApi}/users/${text}`)
                     try {
-                        const repo = await axios(`${gitApi}/repos/${text}/Asta-Md`);
+                        const repo = await axios(`${gitApi}/repos/${text}/Izumi-v2`);
                     } catch (e) {
                         try {
-                            const repo = await axios(`${gitApi}/repos/${text}/Asta`);
+                            const repo = await axios(`${gitApi}/repos/${text}/Izumi-v2`);
                         } catch (e) {
                             alert("Fork The Repository First.\nClick The 'OK' Button To Fork")
                             return location.replace(`https://github.com/${owner}/Izumi-v2/fork`)
@@ -55,7 +55,7 @@
                     else alert("Invalid Platform url!\n\n Follow : deploy?platform=heroku\n Available Platforms: ")
 
                  } catch (error) { alert('Invalid Username') }
-            } else if (text === owner) { alert('Please Put Your UserName') }
+            } else if (text === owner) { alert('Please Put Your User Name') }
         }
     </script>    
 
