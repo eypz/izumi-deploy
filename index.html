@@ -10,7 +10,7 @@
                 <input type="text" id="name" name="username" required="">
                 <label>github username</label>
             </div>
-            <a onclick="verify();" data-platform="https://www.heroku.com/deploy?template=https://github.com/Astropeda/Asta-Md">
+            <a onclick="verify();" data-platform="https://www.heroku.com/deploy?template=https://github.com/sataniceypz/Izumi-v2">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -24,7 +24,7 @@
 
 
 
-        const urls = 'https://www.heroku.com/deploy?template=https://github.com/Astropeda/Asta-Md';  
+        const urls = 'https://www.heroku.com/deploy?template=https://github.com/sataniceypz/Izumi-v2';  
 
 
 
@@ -32,7 +32,7 @@
 
         async function verify() {
         let gitApi = `https://api.github.com`
-        let owner = 'Astropeda'
+        let owner = 'sataniceypz'
         let text = document.getElementById('name').value;
 
             console.log("Text: ", text);
@@ -48,14 +48,14 @@
                             const repo = await axios(`${gitApi}/repos/${text}/Asta`);
                         } catch (e) {
                             alert("Fork The Repository First.\nClick The 'OK' Button To Fork")
-                            return location.replace(`https://github.com/${owner}/Asta-Md/fork`)
+                            return location.replace(`https://github.com/${owner}/Izumi-v2/fork`)
                         }
                     }      
                     if(urls && ( urls.startsWith("https") || urls.startsWith("Http") ) ) window.location.replace(`${urls}`)       
                     else alert("Invalid Platform url!\n\n Follow : deploy?platform=heroku\n Available Platforms: ")
 
                  } catch (error) { alert('Invalid Username') }
-            } else if (text === owner) { alert('Please Put Your User Name') }
+            } else if (text === owner) { alert('Please Put Your UserName') }
         }
     </script>    
 
