@@ -1,63 +1,65 @@
-<!DOCTYPE html><html lang="en"><head>
-    <link rel="icon" type="image/png" sizes="32x32" href="images/asta.png">
-    <link rel="stylesheet" type="text/css" href="css/style2.css">
+<!DOCTYPE html>
+
+<html lang="en" >
+
+<meta charset="UTF-8" />
+
+  <title>Izumi Heroku Deployer</title>
+
 </head>
-<body>
-    <div class="login-box">
-        <h2>Please Enter Github Username</h2>
-        <form id="username" method="get" action="/deploy">
-            <div class="user-box">
-                <input type="text" id="name" name="username" required="">
-                <label>github username</label>
-            </div>
-            <a onclick="verify();" data-platform="https://heroku.com/deploy?template=https://github.com/sataniceypz/Izumi-v2">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                DEPLOY
-            </a>
-        </form>
-    </div>
-    <script src="js/axios.js"></script>
-    <script type="text/javascript">
 
+<body onload="showTextBox()">
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
 
-        const urls = 'https://heroku.com/deploy?template=https://github.com/sataniceypz/Izumi-v2';  
+<script type="text/javascript">
 
+			function showTextBox(){
 
+        let username = prompt("Enter your github username")
 
-       
+        while(!username){
 
-        async function verify() {
-        let gitApi = `https://api.github.com`
-        let owner = 'sataniceypz'
-        let text = document.getElementById('name').value;
+          username = prompt("Enter your github username")
 
-            console.log("Text: ", text);
-            if ( text.length > 0 && text !== owner) {
-                text = text.split("|")[0].trim()
-                console.log("Text : " , text)
-                try {
-                    const { data } = await axios(`${gitApi}/users/${text}`)
-                    try {
-                        const repo = await axios(`${gitApi}/repos/${text}/Izumi-v2`);
-                    } catch (e) {
-                        try {
-                            const repo = await axios(`${gitApi}/repos/${text}/Izumi-v2`);
-                        } catch (e) {
-                            alert("Fork The Repository First.\nClick The 'OK' Button To Fork")
-                            return location.replace(`https://github.com/${owner}/Izumi-v2/fork`)
-                        }
-                    }      
-                    if(urls && ( urls.startsWith("https") || urls.startsWith("Http") ) ) window.location.replace(`${urls}`)       
-                    else alert("Invalid Platform url!\n\n Follow : deploy?platform=heroku\n Available Platforms: ")
-
-                 } catch (error) { alert('Invalid Username') }
-            } else if (text === owner) { alert('Please Put Your User Name') }
         }
-    </script>    
 
+        verify(username)
 
-</body></html>
+      }
+
+      async function verify(username) {
+
+					try {
+
+					const { data } = await axios(`https://api.github.com/users/${username}`)
+
+					try {
+
+					const repo = await axios(`https://api.github.com/repos/${username}/Izumi-v2`)
+
+					} catch (e) {
+
+					alert("You haven't forked the repo, please visit this page after forking\nClick the 'OK' button to fork")
+
+					return location.replace('https://github.com/sataniceypz/Izumi-v2/fork')
+
+					}
+
+					location.replace(`https://dashboard.heroku.com/new-app?template=https://github.com/${username}/Izumi-v2`)
+
+					} catch (error) {
+
+						alert("Username invalid!")
+
+					}
+
+				}
+
+		</script>
+
+</body>
+
+</html>
+
+</script>
