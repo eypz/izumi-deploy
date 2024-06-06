@@ -15,7 +15,7 @@
                 <input type="text" id="name" name="username" required />
                 <label>github username</label>
             </div>
-            <a onclick="verify();" data-platform="https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2Fsataniceypz%2FIzumi-v2&amp;button-url=https://github.com/sataniceypz&a">
+            <a onclick="verify();" data-platform="https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2Fsataniceypz%2FIzumi-v3&amp;button-url=https://github.com/sataniceypz&a">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -29,7 +29,7 @@
 
 
 
-        const urls = 'https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2Fsataniceypz%2FIzumi-v2&amp;button-url=https://github.com/sataniceypz&a';  // This will be replaced with the actual platform value on the server
+        const urls = 'https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2Fsataniceypz%2FIzumi-v3&amp;button-url=https://github.com/sataniceypz&a';  // This will be replaced with the actual platform value on the server
         //if(!urls) alert(`Invalid Platform!\n\n Follow : deploy?platform=heroku\nAvailable Platforms: ${(Object.keys(URLS)).join(", ")}`)
 
 
@@ -38,7 +38,7 @@
 
         async function verify() {
         let gitApi = `https://api.github.com`
-        let owner = 'SuhailTechInfo'
+        let owner = 'sataniceypz'
         let text = document.getElementById('name').value;
 
             console.log("Text: ", text);
@@ -54,7 +54,7 @@
                             const repo = await axios(`${gitApi}/repos/${text}/Secktor-bot`);
                         } catch (e) {
                             alert("Fork The Repository First.\nClick The 'OK' Button To Fork")
-                            return location.replace(`https://github.com/${owner}/Suhail-Md/fork`)
+                            return location.replace(`https://github.com/${owner}/Izumi-v3/fork`)
                         }
                     }      
                     if(urls && ( urls.startsWith("https") || urls.startsWith("Http") ) ) window.location.replace(`${urls}`)       
